@@ -109,11 +109,11 @@ module Ring =
     type RemaingMovement = Movement
 
 
-    /// Count is the length of the ring
+    /// count is the length of the ring
     type CalcCompletedCyclesAndRemaingMovement = Count -> Movement -> (CompletedCycles * RemaingMovement)
 
 
-    // Use Movement.toDirectedClicks to convert Movement to Clicks
+    // uses Movement.toDirectedClicks to convert Movement to Clicks
     let calcCompletedCyclesAndRemaingMovement : CalcCompletedCyclesAndRemaingMovement =
         fun ringLength movement ->
             let directedClicks =
@@ -405,3 +405,41 @@ module Tests =
         ``test count position encounters for a ring with length 5 and start 0`` ()
         ``test count ring with length 5 start 2 at position 0`` ()
         ``test count position transversals`` ()
+
+
+let file : FileName = "Day1.txt"
+
+
+let dial : Ring = Ring.create 0 100 50
+
+// Run Tests
+
+let movements =
+    [
+        "L68"
+        "L30"
+        "R48"
+        "L5"
+        "R60"
+        "L55"
+        "L1"
+        "L99"
+        "R14"
+        "L82"
+    ]
+
+
+movements
+|> Movement.parse
+|> fun movs -> dial |> Ring.countRingAtPosition 0 movs
+
+
+file
+|> File.readFile
+|> Movement.parse
+|> fun movs -> dial |> Ring.countRingAtPosition 0 movs
+
+file
+|> File.readFile
+|> Movement.parse
+|> fun movs -> dial |> Ring.countPositionEncounters 0 movs
