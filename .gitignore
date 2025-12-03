@@ -1,0 +1,23 @@
+# ignore everything
+*
+
+# == except ==
+
+# Add .gitignore and .gitattributes
+!.gitignore
+!.gitattributes
+!.dockerignore
+
+# Add license
+!LICENSE.txt
+!LICENSE
+
+# Add fsx files
+!*.fsx
+
+# Add txt files
+!*.txt
+
+# Add folders
+!/Day1
+!/Day1/Grok
